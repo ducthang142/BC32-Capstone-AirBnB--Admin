@@ -1,13 +1,6 @@
 import { useState, useEffect } from "react";
-import { createStyles, Navbar, Group } from "@mantine/core";
-import {
-  IconSwitchHorizontal,
-  IconLogout,
-  IconUser,
-  IconMapPin,
-  IconHome,
-  IconHomeCheck,
-} from "@tabler/icons";
+import { createStyles, Navbar, Group, Image } from "@mantine/core";
+import { IconUser, IconMapPin, IconHome, IconHomeCheck } from "@tabler/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./Navbar.module.scss";
 import useWindowSize from "../../utils/useWindowSize";
@@ -146,13 +139,11 @@ const NavBar = () => {
           className={styles.navbar}
         >
           <Navbar.Section grow>
-            <Group className={classes.header} position="apart">
-             {/* Avatar */}
+            <Group className={classes.header} position="apart" bg="white">
+              <Image src="./image/logo.png" alt="logo" width={150} />
             </Group>
             {links}
           </Navbar.Section>
-
-        
         </Navbar>
       </div>
     </>

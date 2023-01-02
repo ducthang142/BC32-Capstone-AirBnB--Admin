@@ -33,7 +33,7 @@ const Signin = () => {
       password: (value) =>
         /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value)
           ? null
-          : "Tài khoản phải có ít nhất 8 kí tự gồm cả chữ và số",
+          : "Mật khẩu phải có ít nhất 8 kí tự gồm cả chữ và số",
     },
   });
 
