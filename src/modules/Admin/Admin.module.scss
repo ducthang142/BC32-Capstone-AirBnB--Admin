@@ -1,0 +1,41 @@
+.home {
+  z-index: 0;
+  width: 100%;
+  margin: 4.5rem 2rem 0 16rem;
+}
+.avatar {
+  text-decoration: underline;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  margin-bottom: 3rem;
+}
+
+.button {
+  background-color: #e64980;
+  border: 1px solid transparent;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 600;
+  border-radius: 4px;
+  width: auto;
+  height: 42px;
+  padding-left: 22px;
+  padding-right: 22px;
+  margin-top: 1rem;
+
+  &:hover {
+    background-color: #ce4374;
+  }
+}
+
+/* Responsive  */
+/* 1200px */
+@media screen and (max-width: 1199px) {
+  /* Danh sách sản phẩm  */
+  .home {
+    margin: 4.5rem 2rem 0 2rem;
+  }
+}

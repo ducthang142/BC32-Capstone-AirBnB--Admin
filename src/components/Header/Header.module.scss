@@ -1,0 +1,11 @@
+.header {
+  background-color: #e64980;
+  margin-bottom: 0;
+  position: fixed;
+  z-index: 2;
+  border: none;
+}
+
+.header__avatar {
+  cursor: pointer;
+}

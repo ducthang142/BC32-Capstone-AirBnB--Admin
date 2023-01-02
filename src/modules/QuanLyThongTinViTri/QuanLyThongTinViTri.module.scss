@@ -1,0 +1,30 @@
+.table {
+  min-width: auto;
+  & p {
+    margin-bottom: 0;
+  }
+}
+
+.table__col1 {
+  width: 3rem;
+}
+
+.table__col2 {
+  width: 4rem;
+}
+
+.table__col3 {
+  width: 5rem;
+}
+
+.table__col4 {
+  width: 5rem;
+}
+
+.table__col5 {
+  width: 19rem;
+}
+
+.table__col6 {
+  width: 8rem;
+}
