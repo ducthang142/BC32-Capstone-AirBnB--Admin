@@ -11,6 +11,8 @@ const initialState = {
   isDelete: false,
   isAdd: false,
   addError: null,
+  isUpload: false,
+  uploadError: null,
   count: 0,
 };
 
@@ -60,6 +62,15 @@ export const addLocation = createAsyncThunk("vi-tri/add", async (values) => {
   }
 });
 
+//Upload image
+export const uploadImage = createAsyncThunk("vi-tri/upload", async (values) => {
+  try {
+    await vitriAPI.postSuaAnhViTri(values[0], values[1]);
+  } catch (error) {
+    throw error;
+  }
+});
+
 const vitriSlice = createSlice({
   name: "vitri",
   initialState,
@@ -78,6 +89,10 @@ const vitriSlice = createSlice({
 
     resetIsAdd: (state, action) => {
       return { ...state, isAdd: false };
+    },
+
+    resetIsUpload: (state, action) => {
+      return { ...state, isUpload: false };
     },
   },
   extraReducers: (builder) => {
@@ -133,26 +148,43 @@ const vitriSlice = createSlice({
       return { ...state, loading: false };
     });
 
-     //Add Location
-     builder.addCase(addLocation.pending, (state, action) => {
-        return { ...state, loading: true };
-      });
-  
-      builder.addCase(addLocation.fulfilled, (state, action) => {
-        return {
-          ...state,
-          loading: false,
-          isAdd: true,
-        };
-      });
-  
-      builder.addCase(addLocation.rejected, (state, action) => {
-        return { ...state, loading: false, addError: action.error.message };
-      });
+    //Add Location
+    builder.addCase(addLocation.pending, (state, action) => {
+      return { ...state, loading: true };
+    });
+
+    builder.addCase(addLocation.fulfilled, (state, action) => {
+      return {
+        ...state,
+        loading: false,
+        isAdd: true,
+      };
+    });
+
+    builder.addCase(addLocation.rejected, (state, action) => {
+      return { ...state, loading: false, addError: action.error.message };
+    });
+
+    //Upload Image
+    builder.addCase(uploadImage.pending, (state, action) => {
+      return { ...state, loading: true };
+    });
+
+    builder.addCase(uploadImage.fulfilled, (state, action) => {
+      return {
+        ...state,
+        loading: false,
+        isUpload: true,
+      };
+    });
+
+    builder.addCase(uploadImage.rejected, (state, action) => {
+      return { ...state, loading: false, uploadError: action.error.message };
+    });
   },
 });
 
-export const { increaseCount, resetIsUpdate, resetIsDelete, resetIsAdd } =
+export const { increaseCount, resetIsUpdate, resetIsDelete, resetIsAdd, resetIsUpload } =
   vitriSlice.actions;
 
 export default vitriSlice.reducer;

@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Group, TextInput, Button } from "@mantine/core";
 import { IconSearch } from "@tabler/icons";
 import { useDispatch } from "react-redux";
-import { roomByPageIndex } from "../../../slices/phongSlice";
+import { roomByPageIndex, increaseCount } from "../../../slices/phongSlice";
 
 const TimKiemPhong = ({ setKeyword }) => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
 
+  //Lấy value từ input để call API tìm kiếm phòng
   const handleSearch = () => {
     dispatch(roomByPageIndex([1, value]));
     setKeyword(value);
@@ -38,6 +39,17 @@ const TimKiemPhong = ({ setKeyword }) => {
           onClick={() => handleSearch()}
         >
           Tìm kiếm
+        </Button>
+        <Button
+          color="pink"
+          w={100}
+          onClick={() => {
+            setValue("");
+            setKeyword("");
+            dispatch(increaseCount());
+          }}
+        >
+          Refresh
         </Button>
       </Group>
     </>

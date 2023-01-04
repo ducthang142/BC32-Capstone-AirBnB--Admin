@@ -64,10 +64,12 @@ const ThemPhong = ({ viTri }) => {
     },
   });
 
+  //Call API thêm phòng thuê
   const handleSubmit = (values) => {
     dispatch(addRoom(values));
   };
 
+  //Hiện thông báo thành công
   useEffect(() => {
     if (isAdd) {
       setOpenSuccess(true);
@@ -274,6 +276,13 @@ const ThemPhong = ({ viTri }) => {
                   input: {
                     "&:focus-within": {
                       borderColor: theme.colors.pink[6],
+                    },
+                  },
+                  item: {
+                    "&[data-selected]": {
+                      "&, &:hover": {
+                        backgroundColor: theme.colors.pink[6],
+                      },
                     },
                   },
                 })}

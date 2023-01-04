@@ -18,10 +18,12 @@ const XoaNguoiDung = ({ id }) => {
     setOpened(true);
   };
 
+  //call api xóa người dùng 
   const handleDelete = () => {
     dispatch(deleteUser(id));
   };
 
+  //hiện thông báo xóa thành công khi fulfilled
   useEffect(() => {
     if (isDelete) {
       setOpenSuccess(true);

@@ -11,10 +11,10 @@ import {
 import { IconUser, IconMapPin, IconHome, IconHomeCheck } from "@tabler/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./Header.module.scss";
-import useWindowSize from "../../utils/useWindowSize";
-import { logout } from "../../slices/authSlice";
+import useWindowSize from "../../../utils/useWindowSize";
+import { logout } from "../../../slices/authSlice";
 import { useSelector, useDispatch } from "react-redux";
-import nguoidungAPI from "../../services/nguoidungAPI";
+import nguoidungAPI from "../../../services/nguoidungAPI";
 
 const Header1 = ({ active, setActive }) => {
   const navigate = useNavigate();
@@ -152,7 +152,7 @@ const Header1 = ({ active, setActive }) => {
           </Group>
 
           <Group spacing={0} className={classes.social} position="right" noWrap>
-            <Popover width="target" position="bottom" shadow="md">
+            <Popover width={140} position="bottom" shadow="md">
               <Popover.Target>
                 <Group width={200}>
                   <Text

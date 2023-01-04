@@ -10,11 +10,12 @@ import {
   Center,
   Image,
   LoadingOverlay,
-  Text,
+  Flex,
 } from "@mantine/core";
 import { locationByPageIndex } from "../../slices/vitriSlice";
 import SuaThongTinViTri from "./SuaThongTinViTri";
 import XoaViTri from "./XoaViTri";
+import SuaAnhViTri from "./SuaAnhViTri/SuaAnhViTri";
 
 const QuanLyThongTinViTri = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const QuanLyThongTinViTri = () => {
     (state) => state.vitri
   );
 
+  //call API lấy thông tin vị trí theo trang
   useEffect(() => {
     dispatch(locationByPageIndex([activePage, keyword]));
   }, [activePage, count]);
@@ -38,9 +40,7 @@ const QuanLyThongTinViTri = () => {
         <ScrollArea type="always" style={{ width: "100%", height: 650 }}>
           <div className={styles.table}>
             <Table
-              // horizontalSpacing="xs"
               verticalSpacing="xs"
-              // sx={{ tableLayout: "fixed", minWidth: "700"}}
               withBorder
               miw={800}
               highlightOnHover
@@ -72,7 +72,7 @@ const QuanLyThongTinViTri = () => {
                       <p className={styles.table__col4}>{item.quocGia}</p>
                     </td>
                     <td>
-                      <div className={styles.table__col5}>
+                      <Flex className={styles.table__col5} align="center" gap="sm">
                         <Image
                           src={item.hinhAnh}
                           alt={item.tenViTri}
@@ -80,7 +80,8 @@ const QuanLyThongTinViTri = () => {
                           width={300}
                           height={180}
                         />
-                      </div>
+                        <SuaAnhViTri id={item.id}/>
+                      </Flex>
                     </td>
                     <td>
                       <div className={styles.table__col6}>

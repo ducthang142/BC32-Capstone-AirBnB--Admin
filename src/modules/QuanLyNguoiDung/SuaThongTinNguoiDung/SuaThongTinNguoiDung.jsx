@@ -10,6 +10,7 @@ import {
   Select,
   LoadingOverlay,
   Flex,
+  ScrollArea,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { DatePicker } from "@mantine/dates";
@@ -22,6 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import formatDateUpAPI from "../../../utils/formatDateUpAPI";
 import formatDateToFE from "../../../utils/formatDateToFE";
 import TickSuccessIcon from "../../../components/TickSuccessIcon";
+import useWindowSize from "../../../utils/useWindowSize";
 
 const SuaThongTinNguoiDung = ({ nguoiDung }) => {
   const [opened, setOpened] = useState(false);
@@ -29,10 +31,12 @@ const SuaThongTinNguoiDung = ({ nguoiDung }) => {
   const [openSuccess, setOpenSuccess] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const dispatch = useDispatch();
+  const size = useWindowSize();
   const { loading, updateError, isUpdateFulfilled } = useSelector(
     (state) => state.auth
   );
 
+  //form
   const form = useForm({
     validateInputOnChange: true,
     initialValues: {
@@ -79,6 +83,7 @@ const SuaThongTinNguoiDung = ({ nguoiDung }) => {
     }
   }, [isUpdateFulfilled]);
 
+  //hiện modal cảnh báo confirm
   const handleSubmit = (values) => {
     const newValues = {
       ...values,
@@ -88,6 +93,7 @@ const SuaThongTinNguoiDung = ({ nguoiDung }) => {
     setOpenModal(true);
   };
 
+  //call api update thông tin người dùng
   const handleUpdate = () => {
     const values = { ...userInfo, id: nguoiDung.id };
     dispatch(update(values));
@@ -116,53 +122,129 @@ const SuaThongTinNguoiDung = ({ nguoiDung }) => {
               Sửa Thông Tin Người Dùng
             </Title>
 
-            <TextInput
-              label="Họ Tên"
-              mt="md"
-              size="md"
-              {...form.getInputProps("name")}
-            />
+            <ScrollArea h={size.height < 740 ? 400 : "auto"}>
+              <TextInput
+                label="Họ Tên"
+                mt="md"
+                size="md"
+                styles={(theme) => ({
+                  input: {
+                    "&:focus-within": {
+                      borderColor: theme.colors.pink[6],
+                    },
+                  },
+                })}
+                {...form.getInputProps("name")}
+              />
 
-            <TextInput
-              label="Email"
-              mt="md"
-              size="md"
-              {...form.getInputProps("email")}
-            />
-            <TextInput
-              label="Số Điện Thoại"
-              mt="md"
-              size="md"
-              {...form.getInputProps("phone")}
-            />
+              <TextInput
+                label="Email"
+                mt="md"
+                size="md"
+                styles={(theme) => ({
+                  input: {
+                    "&:focus-within": {
+                      borderColor: theme.colors.pink[6],
+                    },
+                  },
+                })}
+                {...form.getInputProps("email")}
+              />
+              <TextInput
+                label="Số Điện Thoại"
+                mt="md"
+                size="md"
+                styles={(theme) => ({
+                  input: {
+                    "&:focus-within": {
+                      borderColor: theme.colors.pink[6],
+                    },
+                  },
+                })}
+                {...form.getInputProps("phone")}
+              />
 
-            <DatePicker
-              placeholder="Chọn ngày"
-              label="Ngày Sinh"
-              mt="md"
-              size="md"
-              inputFormat="DD/MM/YYYY"
-              labelFormat="MM/YYYY"
-              {...form.getInputProps("birthday")}
-            />
+              <DatePicker
+                placeholder="Chọn ngày"
+                label="Ngày Sinh"
+                mt="md"
+                size="md"
+                inputFormat="DD/MM/YYYY"
+                labelFormat="MM/YYYY"
+                dropdownType="modal"
+                styles={(theme) => ({
+                  input: {
+                    "&:focus-within": {
+                      borderColor: theme.colors.pink[6],
+                    },
+                  },
 
-            <Select
-              label="Loại người dùng"
-              placeholder="USER hay ADMIN"
-              mt="md"
-              size="md"
-              data={[
-                { value: "USER", label: "USER" },
-                { value: "ADMIN", label: "ADMIN" },
-              ]}
-              {...form.getInputProps("role")}
-            />
+                  calendarHeaderLevel: {
+                    backgroundColor: theme.colors.pink[6],
+                    "&:hover": {
+                      backgroundColor: theme.colors.pink[6],
+                    },
+                  },
 
-            <Button mt="xl" size="md" type="submit" color="pink">
-              Cập Nhật
-            </Button>
-            {updateError && <Text color="red">{updateError}</Text>}
-            <LoadingOverlay visible={loading} overlayBlur={2} />
+                  monthPickerControlActive: {
+                    backgroundColor: theme.colors.pink[6],
+                    "&:hover": {
+                      backgroundColor: theme.colors.pink[6],
+                    },
+                  },
+
+                  yearPickerControlActive: {
+                    backgroundColor: theme.colors.pink[6],
+                    "&:hover": {
+                      backgroundColor: theme.colors.pink[6],
+                    },
+                  },
+
+                  day: {
+                    "&[data-selected]": {
+                      backgroundColor: theme.colors.pink[6],
+                    },
+                  },
+                })}
+                {...form.getInputProps("birthday")}
+              />
+
+              <Select
+                label="Loại người dùng"
+                placeholder="USER hay ADMIN"
+                mt="md"
+                size="md"
+                styles={(theme) => ({
+                  input: {
+                    "&:focus-within": {
+                      borderColor: theme.colors.pink[6],
+                    },
+                  },
+                  item: {
+                    "&[data-selected]": {
+                      "&, &:hover": {
+                        backgroundColor: theme.colors.pink[6],
+                      },
+                    },
+                  },
+                })}
+                data={[
+                  { value: "USER", label: "USER" },
+                  { value: "ADMIN", label: "ADMIN" },
+                ]}
+                {...form.getInputProps("role")}
+              />
+
+              <Button mt="xl" size="md" type="submit" color="pink">
+                Cập Nhật
+              </Button>
+              {updateError && <Text color="red">{updateError}</Text>}
+              <LoadingOverlay
+                visible={loading}
+                overlayBlur={2}
+                loaderProps={{ size: "sm", color: "pink", variant: "bars" }}
+              />
+            </ScrollArea>
           </form>
         </Paper>
       </Drawer>

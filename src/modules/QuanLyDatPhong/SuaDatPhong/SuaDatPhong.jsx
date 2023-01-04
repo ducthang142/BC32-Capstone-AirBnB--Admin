@@ -65,6 +65,7 @@ const SuaDatPhong = ({ datPhong }) => {
     }
   }, [isUpdate]);
 
+  //Hiện cảnh báo để confirm 
   const handleSubmit = (values) => {
     const newValues = {
       ...values,
@@ -75,6 +76,7 @@ const SuaDatPhong = ({ datPhong }) => {
     setOpenModal(true);
   };
 
+  //Call API để update thông tin đặt phòng
   const handleUpdate = () => {
     const values = [datPhong.id, datPhongInfo];
     dispatch(updateBooking(values));
@@ -127,10 +129,38 @@ const SuaDatPhong = ({ datPhong }) => {
               onChange={setValue}
               amountOfMonths={2}
               inputFormat="DD/MM/YYYY"
+              dropdownType="modal"
               styles={(theme) => ({
                 input: {
                   "&:focus-within": {
                     borderColor: theme.colors.pink[6],
+                  },
+                },
+
+                calendarHeaderLevel: {
+                  backgroundColor: theme.colors.pink[6],
+                  "&:hover": {
+                    backgroundColor: theme.colors.pink[6],
+                  },
+                },
+
+                monthPickerControlActive: {
+                  backgroundColor: theme.colors.pink[6],
+                  "&:hover": {
+                    backgroundColor: theme.colors.pink[6],
+                  },
+                },
+
+                yearPickerControlActive: {
+                  backgroundColor: theme.colors.pink[6],
+                  "&:hover": {
+                    backgroundColor: theme.colors.pink[6],
+                  },
+                },
+
+                day: {
+                  "&[data-selected]": {
+                    backgroundColor: theme.colors.pink[6],
                   },
                 },
               })}

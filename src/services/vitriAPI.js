@@ -26,6 +26,12 @@ const vitriAPI = {
   postThemViTri: (values) => {
     return fetcher.post("vi-tri", values);
   },
+
+  postSuaAnhViTri: (values, id) => {
+    return fetcher.post("vi-tri/upload-hinh-vitri", values, {
+      params: { maViTri: id },
+    });
+  },
 };
 
 export default vitriAPI;

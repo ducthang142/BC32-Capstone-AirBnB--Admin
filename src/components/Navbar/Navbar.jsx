@@ -4,7 +4,7 @@ import { IconUser, IconMapPin, IconHome, IconHomeCheck } from "@tabler/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./Navbar.module.scss";
 import useWindowSize from "../../utils/useWindowSize";
-import Header1 from "../Header";
+import Header1 from "./Header";
 import { useDispatch } from "react-redux";
 
 const NavBar = () => {
@@ -13,6 +13,7 @@ const NavBar = () => {
   const location = useLocation();
   const size = useWindowSize();
 
+  // Css của thư viện
   const useStyles = createStyles((theme, _params, getRef) => {
     const icon = getRef("icon");
     return {
@@ -78,6 +79,7 @@ const NavBar = () => {
     };
   });
 
+  //Data của navbar
   const data = [
     {
       link: "/admin/quanlynguoidung",
@@ -104,10 +106,12 @@ const NavBar = () => {
   const { classes, cx } = useStyles();
   const [active, setActive] = useState("");
 
+  //thay đổi đối tượng active khi navigate sang params khác
   useEffect(() => {
     setActive(location.pathname);
   }, [navigate]);
 
+  //Khởi tạo HTML cho mỗi đối tượng của navbar
   const links = data.map((item) => (
     <a
       className={cx(classes.link, {
@@ -140,7 +144,7 @@ const NavBar = () => {
         >
           <Navbar.Section grow>
             <Group className={classes.header} position="apart" bg="white">
-              <Image src="./image/logo.png" alt="logo" width={150} />
+              <Image src="./image/logo.png" alt="logo" width={150} className={styles.navbar__logo} />
             </Group>
             {links}
           </Navbar.Section>

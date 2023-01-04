@@ -36,6 +36,7 @@ const DatPhong = () => {
     },
   });
 
+  //Call API để thêm đặt phòng
   const handleSubmit = (values) => {
     const newValues = {
       ...values,
@@ -45,6 +46,7 @@ const DatPhong = () => {
     dispatch(addBooking(newValues));
   };
 
+  //Thông báo thành công
   useEffect(() => {
     if (isAdd) {
       setOpenSuccess(true);
@@ -129,10 +131,38 @@ const DatPhong = () => {
               onChange={setValue}
               amountOfMonths={2}
               inputFormat="DD/MM/YYYY"
+              dropdownType="modal"
               styles={(theme) => ({
                 input: {
                   "&:focus-within": {
                     borderColor: theme.colors.pink[6],
+                  },
+                },
+
+                calendarHeaderLevel: {
+                  backgroundColor: theme.colors.pink[6],
+                  "&:hover": {
+                    backgroundColor: theme.colors.pink[6],
+                  },
+                },
+
+                monthPickerControlActive: {
+                  backgroundColor: theme.colors.pink[6],
+                  "&:hover": {
+                    backgroundColor: theme.colors.pink[6],
+                  },
+                },
+
+                yearPickerControlActive: {
+                  backgroundColor: theme.colors.pink[6],
+                  "&:hover": {
+                    backgroundColor: theme.colors.pink[6],
+                  },
+                },
+
+                day: {
+                  "&[data-selected]": {
+                    backgroundColor: theme.colors.pink[6],
                   },
                 },
               })}

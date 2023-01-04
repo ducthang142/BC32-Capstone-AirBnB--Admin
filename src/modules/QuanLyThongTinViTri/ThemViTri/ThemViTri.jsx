@@ -58,10 +58,12 @@ const ThemViTri = () => {
     },
   });
 
+  //Call API thêm vị trí
   const handleSubmit = (values) => {
     dispatch(addLocation(values));
   };
 
+  //Hiện thông báo thành công
   useEffect(() => {
     if (isAdd) {
       setOpenSuccess(true);

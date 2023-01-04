@@ -30,6 +30,7 @@ const QuanLyThongTinPhong = () => {
     (state) => state.phong
   );
 
+  //Call API lấy danh sách vị trí để điền vào vị trí của phòng 
   useEffect(() => {
     (async () => {
       try {
@@ -41,6 +42,7 @@ const QuanLyThongTinPhong = () => {
     })();
   }, []);
 
+  //Call API lấy danh sách phòng thuê phân trang
   useEffect(() => {
     dispatch(roomByPageIndex([activePage, keyword]));
   }, [activePage, count]);

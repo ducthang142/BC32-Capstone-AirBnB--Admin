@@ -37,6 +37,7 @@ const QuanLyDatPhong = () => {
     dispatch(bookingList());
   }, [count]);
 
+  //Xem user có đang tìm kiếm hay ko, nếu có thì đưa về danh sách phòng theo keyword tìm kiếm
   useEffect(() => {
     if (!keyword) {
     } else {
@@ -46,6 +47,7 @@ const QuanLyDatPhong = () => {
     dispatch(resetIsGetList());
   }, [isGetList]);
 
+  //Chia danh sách đặt phòng theo từng trang, nếu đang tìm kiếm thì hiện số trang của keyword đang tìm kiếm
   let page = keyword
     ? Math.ceil(searchLists.length / 10)
     : bookingLists

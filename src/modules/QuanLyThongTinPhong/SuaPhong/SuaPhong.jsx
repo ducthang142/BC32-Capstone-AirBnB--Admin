@@ -63,6 +63,7 @@ const SuaPhong = ({ phong, viTri }) => {
     },
   });
 
+  //Fill thông tin lên input của form
   useEffect(() => {
     form.setValues({
       tenPhong: phong.tenPhong,
@@ -86,6 +87,7 @@ const SuaPhong = ({ phong, viTri }) => {
     });
   }, [opened]);
 
+  //Hiện thông báo thành công
   useEffect(() => {
     if (isUpdate) {
       setOpenSuccess(true);
@@ -95,11 +97,13 @@ const SuaPhong = ({ phong, viTri }) => {
     }
   }, [isUpdate]);
 
+  //Hiện cảnh báo để confirm
   const handleSubmit = (values) => {
     setRoomInfo(values);
     setOpenModal(true);
   };
 
+  //Call API update thông tin phòng thuê
   const handleUpdate = () => {
     const values = [phong.id, roomInfo];
     dispatch(updateRoom(values));
@@ -302,6 +306,13 @@ const SuaPhong = ({ phong, viTri }) => {
                   input: {
                     "&:focus-within": {
                       borderColor: theme.colors.pink[6],
+                    },
+                  },
+                  item: {
+                    "&[data-selected]": {
+                      "&, &:hover": {
+                        backgroundColor: theme.colors.pink[6],
+                      },
                     },
                   },
                 })}

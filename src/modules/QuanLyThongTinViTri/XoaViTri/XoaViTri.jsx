@@ -10,14 +10,17 @@ const XoaViTri = ({id}) => {
   const [opened, setOpened] = useState(false);
   const [openSuccess, setOpenSuccess] = useState(false);
 
+  //Cảnh báo để confirm trước khi xóa
   const handleConfirm = () => {
     setOpened(true);
   };
 
+  //Call API xóa vị trí
   const handleDelete = () => {
     dispatch(deleteLocation(id));
   };
 
+  //Hiện thông báo thành công
   useEffect(() => {
     if (isDelete) {
       setOpenSuccess(true);

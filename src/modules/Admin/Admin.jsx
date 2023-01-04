@@ -8,13 +8,13 @@ import {
   Center,
   Modal,
   LoadingOverlay,
-  Title,
   Group,
   FileButton,
   Button,
   Image,
+  Skeleton,
 } from "@mantine/core";
-import { IconUpload } from "@tabler/icons";
+import { IconUpload, IconMail, IconCalendar, IconPhone } from "@tabler/icons";
 import nguoidungAPI from "../../services/nguoidungAPI";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "@mantine/form";
@@ -37,6 +37,7 @@ const Admin = () => {
   const location = useLocation();
   const [openSuccess, setOpenSuccess] = useState(false);
 
+  //Call API để lấy thông tin avatar của người dùng lưu xuống local storage
   useEffect(() => {
     (async () => {
       try {
@@ -64,11 +65,10 @@ const Admin = () => {
   const handleChangeImage = (file) => {
     if (!file) return;
 
-    // set value cho file hình ảnh của react-hook-form
+    // set value cho file hình ảnh
     form.setFieldValue("avatar", file);
 
     //Xử lý hiển thị hình ảnh preview cho user thấy
-
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.onload = (evt) => {
@@ -97,48 +97,66 @@ const Admin = () => {
 
   return (
     <div className={styles.home}>
-      <Card shadow="sm" p="xl" w={350} hidden={location.pathname !== "/admin"}>
-        <Card.Section align="center">
-          <Center>
+      <Group
+        position="center"
+        h="100vh"
+        hidden={location.pathname !== "/admin" ? true : false}
+      >
+        <Card withBorder p="none" radius="md" shadow="xl">
+          <Skeleton visible={!nguoiDung.avatar}>
+            <Card.Section>
+              <Image
+                src="./image/avatar-background.jpg"
+                width={350}
+                height={200}
+              />
+            </Card.Section>
+
             <Avatar
-              radius={160}
-              size={160}
-              color="pink"
               src={nguoiDung.avatar}
+              size={120}
+              radius={120}
+              mx="auto"
+              mt={-50}
+              style={{ border: "3px solid #fff" }}
             />
-          </Center>
-          <p onClick={() => setOpened(true)} className={styles.avatar}>
-            Cập nhật ảnh
-          </p>
-        </Card.Section>
+            <Center>
+              <p onClick={() => setOpened(true)} className={styles.avatar}>
+                Cập nhật ảnh
+              </p>
+            </Center>
 
-        <Text weight={500} size="lg" mt="md" align="center">
-          {nguoiDung.name}
-        </Text>
+            <Text align="center" size="lg" weight={500} mt="sm">
+              {nguoiDung.name}
+            </Text>
 
-        <Text mt="xs" color="dimmed" size="sm" align="center">
-          {nguoiDung.email}
-        </Text>
+            <Text align="center" size="sm" color="dimmed">
+              <IconMail />: {nguoiDung.email}
+            </Text>
 
-        <Text mt="xs" color="dimmed" size="sm" align="center">
-          {nguoiDung.birthday?.slice(0, 2)}/{nguoiDung.birthday?.slice(3, 5)}/
-          {nguoiDung.birthday?.slice(6, 10)}
-        </Text>
+            <Text align="center" size="sm" color="dimmed">
+              <IconCalendar />: {nguoiDung.birthday?.slice(0, 2)}/
+              {nguoiDung.birthday?.slice(3, 5)}/
+              {nguoiDung.birthday?.slice(6, 10)}
+            </Text>
 
-        <Text mt="xs" color="dimmed" size="sm" align="center">
-          {nguoiDung.phone}
-        </Text>
-        <Text mt="xs" size="sm" align="center">
-          <ChinhSuaHoSo nguoiDung={nguoiDung} />
-        </Text>
-      </Card>
+            <Text align="center" size="sm" color="dimmed">
+              <IconPhone />: {nguoiDung.phone}
+            </Text>
+
+            <Text align="center" mt={20}>
+              <ChinhSuaHoSo nguoiDung={nguoiDung} />
+            </Text>
+          </Skeleton>
+        </Card>
+      </Group>
 
       {/* Modal */}
       <Modal
         opened={opened}
         onClose={() => setOpened(false)}
         title="Cập nhật ảnh avatar"
-        size={imgPreview?"auto":"sm"}
+        size={imgPreview ? "auto" : "sm"}
       >
         <form
           onSubmit={form.onSubmit((values) => handleSubmit(values))}
@@ -159,7 +177,11 @@ const Admin = () => {
 
           <button className={styles.button}>Cập nhật</button>
           {avatarError && <Text color="red">{avatarError}</Text>}
-          <LoadingOverlay visible={loading} overlayBlur={2} />
+          <LoadingOverlay
+            visible={loading}
+            overlayBlur={2}
+            loaderProps={{ size: "sm", color: "pink", variant: "bars" }}
+          />
         </form>
       </Modal>
 

@@ -9,6 +9,7 @@ const TimKiemDatPhong = ({ setActivePage, setKeyword }) => {
   const { bookingLists } = useSelector((state) => state.datphong);
   const dispatch = useDispatch();
 
+  //Lấy thông tin input để filter danh sách đặt phòng 
   const handleSearch = () => {
     const lists = bookingLists.filter((item) => item.maNguoiDung === value);
     setKeyword(value);

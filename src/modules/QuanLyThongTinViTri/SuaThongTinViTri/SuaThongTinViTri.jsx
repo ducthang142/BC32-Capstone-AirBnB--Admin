@@ -82,11 +82,13 @@ const SuaThongTinViTri = ({ viTri }) => {
     }
   }, [isUpdate]);
 
+  //hiện cảnh báo để confirm
   const handleSubmit = (values) => {
     setLocationInfo(values);
     setOpenModal(true);
   };
 
+  //call API update thông tin vị trí
   const handleUpdate = () => {
     const values = [viTri.id, locationInfo ];
     dispatch(updateLocation(values));
@@ -119,6 +121,13 @@ const SuaThongTinViTri = ({ viTri }) => {
               label="Tên vị trí"
               mt="md"
               size="md"
+              styles={(theme) => ({
+                input: {
+                  "&:focus-within": {
+                    borderColor: theme.colors.pink[6],
+                  },
+                },
+              })}
               {...form.getInputProps("tenViTri")}
             />
 
@@ -126,6 +135,13 @@ const SuaThongTinViTri = ({ viTri }) => {
               label="Tỉnh thành"
               mt="md"
               size="md"
+              styles={(theme) => ({
+                input: {
+                  "&:focus-within": {
+                    borderColor: theme.colors.pink[6],
+                  },
+                },
+              })}
               {...form.getInputProps("tinhThanh")}
             />
 
@@ -133,6 +149,13 @@ const SuaThongTinViTri = ({ viTri }) => {
               label="Quốc gia"
               mt="md"
               size="md"
+              styles={(theme) => ({
+                input: {
+                  "&:focus-within": {
+                    borderColor: theme.colors.pink[6],
+                  },
+                },
+              })}
               {...form.getInputProps("quocGia")}
             />
 
@@ -140,6 +163,13 @@ const SuaThongTinViTri = ({ viTri }) => {
               label="Hình ảnh"
               mt="md"
               size="md"
+              styles={(theme) => ({
+                input: {
+                  "&:focus-within": {
+                    borderColor: theme.colors.pink[6],
+                  },
+                },
+              })}
               {...form.getInputProps("hinhAnh")}
             />
 

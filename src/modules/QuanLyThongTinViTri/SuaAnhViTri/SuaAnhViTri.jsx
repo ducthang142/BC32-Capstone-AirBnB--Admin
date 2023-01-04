@@ -15,13 +15,13 @@ import {
   uploadImage,
   increaseCount,
   resetIsUpload,
-} from "../../../slices/phongSlice";
+} from "../../../slices/vitriSlice";
 import TickSuccessIcon from "../../../components/TickSuccessIcon";
-import styles from "./SuaAnhPhong.module.scss";
+import styles from "./SuaAnhViTri.module.scss";
 
-const SuaAnhPhong = ({ id }) => {
+const SuaAnhViTri = ({ id }) => {
   const { loading, isUpload, uploadError } = useSelector(
-    (state) => state.phong
+    (state) => state.vitri
   );
   const [opened, setOpened] = useState(false);
   const [openSuccess, setOpenSuccess] = useState(false);
@@ -117,4 +117,4 @@ const SuaAnhPhong = ({ id }) => {
   );
 };
 
-export default SuaAnhPhong;
+export default SuaAnhViTri;

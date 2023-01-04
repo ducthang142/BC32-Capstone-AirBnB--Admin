@@ -24,6 +24,7 @@ const QuanLyNguoiDung = () => {
     (state) => state.auth
   );
 
+  //call API lấy thông tin người dung theo trang
   useEffect(() => {
     dispatch(userListByPageIndex([activePage, keyword]));
   }, [activePage, count]);

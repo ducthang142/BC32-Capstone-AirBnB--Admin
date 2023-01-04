@@ -14,14 +14,17 @@ const XoaDatPhong = ({ id }) => {
   const [opened, setOpened] = useState(false);
   const [openSuccess, setOpenSuccess] = useState(false);
 
+  //Hiện cảnh báo confirm 
   const handleConfirm = () => {
     setOpened(true);
   };
 
+  //Call API xóa đặt phòng 
   const handleDelete = () => {
     dispatch(deleteBooking(id));
   };
 
+  //Hiện thông báo thành công
   useEffect(() => {
     if (isDelete) {
       setOpenSuccess(true);

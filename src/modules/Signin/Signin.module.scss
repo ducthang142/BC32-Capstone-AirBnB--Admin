@@ -1,13 +1,13 @@
 .container {
     max-width: 100%;
     margin: 0 auto;
-    background-color: #e64980;
+    background: url("../../../public/image/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   
-  .signin__dangKy {
-    color: blue;
-    cursor: pointer;
-  }
+
 
 
  

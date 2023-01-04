@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Group, TextInput, Button } from "@mantine/core";
 import { IconSearch } from "@tabler/icons";
 import { useDispatch } from "react-redux";
-import { locationByPageIndex } from "../../../slices/vitriSlice";
+import { locationByPageIndex, increaseCount } from "../../../slices/vitriSlice";
 
-const TimKiemViTri = ({setKeyword}) => {
+const TimKiemViTri = ({ setKeyword }) => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
 
+  //Đưa value từ input để call API lấy thông tin vị trí tìm kiếm
   const handleSearch = () => {
     dispatch(locationByPageIndex([1, value]));
     setKeyword(value);
@@ -24,14 +25,31 @@ const TimKiemViTri = ({setKeyword}) => {
           w={300}
           styles={(theme) => ({
             input: {
-              '&:focus-within': {
+              "&:focus-within": {
                 borderColor: theme.colors.pink[6],
               },
             },
           })}
         />
-        <Button color="pink" variant="outline" size="sm" w={100} onClick={() => handleSearch()}>
+        <Button
+          color="pink"
+          variant="outline"
+          size="sm"
+          w={100}
+          onClick={() => handleSearch()}
+        >
           Tìm kiếm
+        </Button>
+        <Button
+          color="pink"
+          w={100}
+          onClick={() => {
+            setValue("");
+            setKeyword("");
+            dispatch(increaseCount());
+          }}
+        >
+          Refresh
         </Button>
       </Group>
     </>

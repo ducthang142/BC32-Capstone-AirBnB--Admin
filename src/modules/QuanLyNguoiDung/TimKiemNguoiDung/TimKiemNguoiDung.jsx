@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Group, TextInput, Button } from "@mantine/core";
 import { IconSearch } from "@tabler/icons";
 import { useDispatch } from "react-redux";
-import { userListByPageIndex } from "../../../slices/authSlice";
+import { userListByPageIndex, increaseCount } from "../../../slices/authSlice";
 
 const TimKiemNguoiDung = ({ setKeyword }) => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
 
+  //Đưa value từ input lên để call API 
   const handleSearch = () => {
     dispatch(userListByPageIndex([1, value]));
     setKeyword(value);
@@ -38,6 +39,17 @@ const TimKiemNguoiDung = ({ setKeyword }) => {
           onClick={() => handleSearch()}
         >
           Tìm kiếm
+        </Button>
+        <Button
+          color="pink"
+          w={100}
+          onClick={() => {
+            setValue("");
+            setKeyword("");
+            dispatch(increaseCount());
+          }}
+        >
+          Refresh
         </Button>
       </Group>
     </>
