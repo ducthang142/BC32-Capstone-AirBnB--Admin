@@ -336,7 +336,7 @@ const ThemPhong = ({ viTri }) => {
                 Thêm
               </Button>
               {addError && <Text color="red">{addError}</Text>}
-              <LoadingOverlay visible={loading} overlayBlur={2} />
+              <LoadingOverlay visible={loading} overlayBlur={2} loaderProps={{ size: "sm", color: "pink", variant: "bars" }}/>
             </form>
           </ScrollArea>
         </Paper>

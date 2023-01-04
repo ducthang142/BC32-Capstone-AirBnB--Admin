@@ -170,7 +170,7 @@ const SuaDatPhong = ({ datPhong }) => {
               Cập Nhật
             </Button>
             {updateError && <Text color="red">{updateError}</Text>}
-            <LoadingOverlay visible={loading} overlayBlur={2} />
+            <LoadingOverlay visible={loading} overlayBlur={2} loaderProps={{ size: "sm", color: "pink", variant: "bars" }}/>
           </form>
         </Paper>
       </Drawer>
