@@ -103,7 +103,7 @@ const Admin = () => {
         hidden={location.pathname !== "/admin" ? true : false}
       >
         <Card withBorder p="none" radius="md" shadow="xl">
-          <Skeleton visible={!nguoiDung.avatar}>
+          <Skeleton visible={!nguoiDung.name}>
             <Card.Section>
               <Image
                 src="./image/avatar-background.jpg"
