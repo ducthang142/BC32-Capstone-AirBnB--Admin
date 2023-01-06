@@ -33,6 +33,7 @@ const ChinhSuaHoSo = ({ nguoiDung }) => {
     (state) => state.auth
   );
 
+  //Form
   const form = useForm({
     validateInputOnChange: true,
     initialValues: {
@@ -63,16 +64,7 @@ const ChinhSuaHoSo = ({ nguoiDung }) => {
     });
   }, [opened]);
 
-  //Thông báo thành công
-  useEffect(() => {
-    if (isUpdateFulfilled) {
-      setOpenSuccess(true);
-      setTimeout(() => setOpenSuccess(false), 1500);
-      dispatch(increaseCount());
-      dispatch(resetIsUpdate());
-    }
-  }, [isUpdateFulfilled]);
-
+  //Hiện cảnh báo confirm
   const handleSubmit = (values) => {
     const newValues = {
       ...values,
@@ -82,11 +74,22 @@ const ChinhSuaHoSo = ({ nguoiDung }) => {
     setOpenModal(true);
   };
 
+  //Call API update thông tin
   const handleUpdate = () => {
     const values = { ...userInfo, id: nguoiDung.id };
     dispatch(update(values));
     setOpenModal(false);
   };
+
+  //Thông báo thành công
+  useEffect(() => {
+    if (isUpdateFulfilled) {
+      setOpenSuccess(true);
+      setTimeout(() => setOpenSuccess(false), 1500);
+      dispatch(increaseCount());
+      dispatch(resetIsUpdate());
+    }
+  }, [isUpdateFulfilled]);
 
   return (
     <>
@@ -160,40 +163,40 @@ const ChinhSuaHoSo = ({ nguoiDung }) => {
               inputFormat="DD/MM/YYYY"
               labelFormat="MM/YYYY"
               dropdownType="modal"
-                styles={(theme) => ({
-                  input: {
-                    "&:focus-within": {
-                      borderColor: theme.colors.pink[6],
-                    },
+              styles={(theme) => ({
+                input: {
+                  "&:focus-within": {
+                    borderColor: theme.colors.pink[6],
                   },
+                },
 
-                  calendarHeaderLevel: {
+                calendarHeaderLevel: {
+                  backgroundColor: theme.colors.pink[6],
+                  "&:hover": {
                     backgroundColor: theme.colors.pink[6],
-                    "&:hover": {
-                      backgroundColor: theme.colors.pink[6],
-                    },
                   },
+                },
 
-                  monthPickerControlActive: {
+                monthPickerControlActive: {
+                  backgroundColor: theme.colors.pink[6],
+                  "&:hover": {
                     backgroundColor: theme.colors.pink[6],
-                    "&:hover": {
-                      backgroundColor: theme.colors.pink[6],
-                    },
                   },
+                },
 
-                  yearPickerControlActive: {
+                yearPickerControlActive: {
+                  backgroundColor: theme.colors.pink[6],
+                  "&:hover": {
                     backgroundColor: theme.colors.pink[6],
-                    "&:hover": {
-                      backgroundColor: theme.colors.pink[6],
-                    },
                   },
+                },
 
-                  day: {
-                    "&[data-selected]": {
-                      backgroundColor: theme.colors.pink[6],
-                    },
+                day: {
+                  "&[data-selected]": {
+                    backgroundColor: theme.colors.pink[6],
                   },
-                })}
+                },
+              })}
               {...form.getInputProps("birthday")}
             />
 
@@ -201,7 +204,11 @@ const ChinhSuaHoSo = ({ nguoiDung }) => {
               Cập Nhật
             </Button>
             {updateError && <Text color="red">{updateError}</Text>}
-            <LoadingOverlay visible={loading} overlayBlur={2} loaderProps={{ size: 'sm', color: 'pink', variant: 'bars' }}/>
+            <LoadingOverlay
+              visible={loading}
+              overlayBlur={2}
+              loaderProps={{ size: "sm", color: "pink", variant: "bars" }}
+            />
           </form>
         </Paper>
       </Drawer>

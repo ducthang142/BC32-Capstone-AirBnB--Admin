@@ -51,7 +51,12 @@ const Signin = () => {
   return (
     <div className={styles.container}>
       <Group position="center" h="100vh">
-        <Paper radius={15} p={30} shadow="xl" w={ size.width > 900 ? 500 : size.width > 600 ? 400 : 300}>
+        <Paper
+          radius={15}
+          p={30}
+          shadow="xl"
+          w={size.width > 900 ? 500 : size.width > 600 ? 400 : 300}
+        >
           <form
             onSubmit={form.onSubmit((values) => handleSubmit(values))}
             style={{ position: "relative" }}

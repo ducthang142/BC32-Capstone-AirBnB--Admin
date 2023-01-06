@@ -1,0 +1,86 @@
+.container {
+  background-image: url("../../../public/image/404-background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+}
+
+.overlay {
+  padding-top: 4rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, #e64980 70%, #ffffff00 100%);
+}
+
+.t1 {
+  font-weight: 700;
+  font-size: 8rem;
+}
+
+.t2 {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.t3 {
+  font-size: 1.5rem;
+  & span {
+    text-decoration: underline;
+    font-weight: 700;
+    cursor: pointer;
+    &:hover {
+      color: #ff0c61;
+    }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .t1 {
+    font-weight: 700;
+    font-size: 7rem;
+  }
+
+  .t2 {
+    font-weight: 500;
+    font-size: 1.8rem;
+  }
+
+  .t3 {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .t1 {
+    font-weight: 700;
+    font-size: 6rem;
+  }
+
+  .t2 {
+    font-weight: 500;
+    font-size: 1.5rem;
+  }
+
+  .t3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .t1 {
+    font-weight: 700;
+    font-size: 4.5rem;
+  }
+
+  .t2 {
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+
+  .t3 {
+    font-size: 1rem;
+  }
+}
